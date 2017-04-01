@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Traits;
+namespace App;
 
-trait ChileRutTrait
+trait ChileanRutTrait
 {
     private function cleanedRut($originalRut, $hasCheckDigit = true)
     {
@@ -62,7 +62,7 @@ trait ChileRutTrait
         $a = $sum % 11;
         $b = 11 - $a;
 
-        switch ($b){
+        switch ($b) {
             case 11:
                 $digitoVerificador = 0;
                 break;
@@ -76,10 +76,11 @@ trait ChileRutTrait
         return (string)$digitoVerificador;
     }
 
-    protected function checkRut($originalRut){
+    protected function checkRut($originalRut)
+    {
         $originalRut = $this->cleanedRut($originalRut);
 
-        if(!$this->hasValidLengthRut($originalRut)){
+        if (!$this->hasValidLengthRut($originalRut)) {
             return false;
         }
 
@@ -87,7 +88,7 @@ trait ChileRutTrait
 
         $digit = $this->checkDigit($number);
 
-        if($digit == $checkDigit){
+        if ($digit == $checkDigit) {
             return true;
         }
 
