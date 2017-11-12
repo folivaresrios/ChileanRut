@@ -1,10 +1,10 @@
 <?php
 
-namespace App;
+namespace KissDev\ChileanRut\Traits;
 
-trait ChileanRutTrait
+trait ChileanRut
 {
-    private function cleanedRut($originalRut, $hasCheckDigit = true)
+    public function clean($originalRut, $hasCheckDigit = true)
     {
         $cleanedRut = null;
         $originalRut = $this->cleanSpaceDotsAndLeftZeros($originalRut);
@@ -13,7 +13,7 @@ trait ChileanRutTrait
         $length = count($input);
         foreach ($input as $key => $char) {
             $last = ($key + 1) == $length && $hasCheckDigit;
-            $cleanedRut = $this->concatenateRut($cleanedRut, $char, $last);
+            $cleanedRut = $this->concatenate($cleanedRut, $char, $last);
         }
 
         return strtoupper($cleanedRut);
@@ -24,7 +24,7 @@ trait ChileanRutTrait
         return ltrim(trim(str_replace('.', '', $originalRut)), '0');
     }
 
-    private function hasValidLengthRut($originalRut)
+    public function hasValidLength($originalRut)
     {
         return strlen($originalRut) >= 3;
     }
@@ -37,7 +37,7 @@ trait ChileanRutTrait
         return false;
     }
 
-    private function concatenateRut($cleanedRut, $char, $last = false)
+    private function concatenate($cleanedRut, $char, $last = false)
     {
         if ($this->hasValidChar($char)) {
             if ($last) {
@@ -76,11 +76,11 @@ trait ChileanRutTrait
         return (string)$digitoVerificador;
     }
 
-    protected function checkRut($originalRut)
+    public function verify($originalRut)
     {
-        $originalRut = $this->cleanedRut($originalRut);
+        $originalRut = $this->clean($originalRut);
 
-        if (!$this->hasValidLengthRut($originalRut)) {
+        if (!$this->hasValidLength($originalRut)) {
             return false;
         }
 
