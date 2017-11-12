@@ -1,4 +1,4 @@
-kissDev ChileanVacation Package
+kissDev ChileanRut Package
 ===================
 [ ![Codeship Status for folivaresrios/chileanrut](https://app.codeship.com/projects/2ddc2100-a971-0135-97c3-36f7001b53e6/status?branch=master)](https://app.codeship.com/projects/256360) [![License](http://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat-square)](https://tldrlegal.com/license/mit-license)
 
