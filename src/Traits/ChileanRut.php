@@ -19,7 +19,7 @@ trait ChileanRut
         return strtoupper($cleanedRut);
     }
 
-    private function cleanSpaceDotsAndLeftZeros($originalRut)
+    protected function cleanSpaceDotsAndLeftZeros($originalRut)
     {
         return ltrim(trim(str_replace('.', '', $originalRut)), '0');
     }
@@ -29,7 +29,7 @@ trait ChileanRut
         return strlen($originalRut) >= 3;
     }
 
-    private function hasValidChar($char)
+    protected function hasValidChar($char)
     {
         if (in_array($char, ['k', 'K']) || is_numeric($char)) {
             return true;
@@ -37,7 +37,7 @@ trait ChileanRut
         return false;
     }
 
-    private function concatenate($cleanedRut, $char, $last = false)
+    protected function concatenate($cleanedRut, $char, $last = false)
     {
         if ($this->hasValidChar($char)) {
             if ($last) {
@@ -49,7 +49,7 @@ trait ChileanRut
         return $cleanedRut;
     }
 
-    private function checkDigit($originalRut)
+    protected function checkDigit($originalRut)
     {
         $txt = array_reverse(str_split($originalRut));
         $sum = 0;
